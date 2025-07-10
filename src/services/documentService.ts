@@ -6,7 +6,7 @@ export interface Document {
   edad?: number;
 }
 
-export const getDocumentByDNI = async (dni: string): Promise<Document> => {
-  const response = await apiClient.get<Document>(`/document/dni/${dni}`);
+export const getListPokemons = async (): Promise<any> => {
+  const response = await apiClient.get('/pokemon');
   return response.data;
-};
+}

@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://www.imperiumpotencialhumano.com/api', // ENVIRONMENT VARIABLE
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  headers: {'Content-Type': 'application/json'},
   withCredentials: false, 
 });
 
