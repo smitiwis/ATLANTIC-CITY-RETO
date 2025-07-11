@@ -9,7 +9,6 @@ const Pokemon: React.FC = () => {
   const { id } = useParams();
 
   const { loading, detailPokemon } = useDetailPokemon(id);
-  console.log("Pokemon Detail:", detailPokemon);
 
   if (loading || !detailPokemon) {
     return (
