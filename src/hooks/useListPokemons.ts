@@ -1,20 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { usePokemonsStore } from "../store/authStore";
-import apiClient from "@/services/apiClient";
+/* eslint-disable react-hooks/exhaustive-deps */
 
+import { useEffect, useState } from "react";
+import apiClient from "@/services/apiClient";
+import { usePokemonsStore } from "@/store/pokemonStore";
+import type { PokemonListResponse } from "@/interfaces";
+
+const pathBase = import.meta.env.VITE_APP_IMAGEN_POKEMON;
 export const useListPokemon = () => {
   const [loading, setLoading] = useState(false);
   const { pokemons, setPokemons } = usePokemonsStore();
 
   const ListPokemon = async () => {
     setLoading(true);
-    const response = await apiClient.get("/pokemon");
-    const pokemons = response.data.results.map((result: any) => {
+    const response = await apiClient.get<PokemonListResponse>("/pokemon");
+    const pokemons = response.data.results.map((result) => {
       const id = result.url.split("/").slice(-2, -1)[0];
       return {
         name: result.name,
-        url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`,
+        url: `${pathBase}/${id}.svg`,
+        id,
       };
     });
     setPokemons(pokemons);

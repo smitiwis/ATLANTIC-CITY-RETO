@@ -6,10 +6,6 @@ interface User {
   usuario: string;
   email?: string;
 }
-interface Pokemon {
-  name: string;
-  url: string;
-}
 
 interface AuthState {
   user: User | null;
@@ -21,11 +17,6 @@ interface AuthState {
   setLoading: (loading: boolean) => void;
 }
 
-interface PokemonState {
-  pokemons: Pokemon[];
-
-  setPokemons: (pokemons: Pokemon[]) => void;
-}
 
 // ========== Auth Store ==========
 export const useAuthStore = create<AuthState>()(
@@ -57,13 +48,3 @@ export const useAuthStore = create<AuthState>()(
   )
 );
 
-// ========== Pokemon Store ==========
-
-export const usePokemonsStore = create<PokemonState>()(
-  persist((set) => ({
-    pokemons: [],
-    setPokemons: (pokemons) => set({ pokemons }),
-  }), {
-    name: "pokemons-storage",
-  })
-);

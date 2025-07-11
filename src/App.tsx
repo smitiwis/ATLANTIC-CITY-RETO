@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/auth/Login";
+import Pokemon from "./pages/pokemon/Pokemon";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/pokemon/:id" element={<Pokemon />} />
             <Route path="*" element={<div>404 - Página no encontrada</div>} />
           </Routes>
         </div>

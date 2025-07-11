@@ -7,9 +7,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useListPokemon } from "@/hooks/useListPokemons";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigation = useNavigate();
   const { loading, pokemons } = useListPokemon();
+
+  const goToDetails = (id: string) => {
+    navigation(`/pokemon/${id}`);
+  };
 
   if (loading) {
     return (
@@ -46,7 +52,10 @@ const Home = () => {
                 />
               </TableCell>
               <TableCell>
-                <button className="text-emerald-600 hover:underline cursor-pointer">
+                <button
+                  className="text-emerald-600 hover:underline cursor-pointer"
+                  onClick={() => goToDetails(pokemon.id)}
+                >
                   Ver Detalles
                 </button>
               </TableCell>
