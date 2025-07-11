@@ -3,21 +3,9 @@ import { useDetailPokemon } from "@/hooks/useDetailPokemon";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-type PokemonData = {
-  base_experience: number;
-  forms: { name: string }[];
-  cries: { latest: string };
-  abilities: {
-    ability: { name: string };
-    is_hidden: boolean;
-  }[];
-};
 
-type Props = {
-  data: PokemonData;
-};
 
-const Pokemon: React.FC<Props> = () => {
+const Pokemon: React.FC = () => {
   const { id } = useParams();
 
   const { loading, detailPokemon } = useDetailPokemon(id);
