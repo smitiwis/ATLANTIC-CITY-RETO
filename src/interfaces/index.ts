@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface PokemonListResponse {
   count: number;
   next: string;
@@ -13,5 +14,7 @@ export interface Pokemon {
 
 export interface PokemonState {
   pokemons: Pokemon[];
+  detailPokemon: any;
   setPokemons: (pokemons: Pokemon[]) => void;
+  setDetailPokemon: (detailPokemon: any) => void;
 }
