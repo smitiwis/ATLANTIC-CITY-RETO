@@ -11,7 +11,7 @@ export const useDetailPokemon = (id?: string) => {
   const [loading, setLoading] = useState(false);
   const { detailPokemon, setDetailPokemon } = usePokemonsStore();
 
-  const ListPokemon = async () => {
+  const getdetailPokemon = async () => {
     if (!id) navigate("/home");
     setLoading(true);
     const response = await apiClient.get<any>(`/pokemon/${id}`);
@@ -24,7 +24,7 @@ export const useDetailPokemon = (id?: string) => {
   };
 
   useEffect(() => {
-    ListPokemon();
+    getdetailPokemon();
   }, []);
 
   return {
