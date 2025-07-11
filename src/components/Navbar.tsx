@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavbarItem from "./NavbarItem";
 import { NAVBAR_ITEMS } from "../constants";
 import { useAuthStore } from "../store/authStore";
@@ -7,9 +7,15 @@ import { FaUser } from "react-icons/fa";
 const Navbar = () => {
   const { user } = useAuthStore();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const logout = () => {
+    navigate("/login");
+    useAuthStore.getState().logout();
   };
 
   return (
@@ -30,10 +36,7 @@ const Navbar = () => {
             <span className=" flex items-center gap-x-1.5 text-gray-700 dark:text-gray-300">
               <FaUser size={20} /> {user.usuario}
             </span>
-            <button
-              className="text-red-800 cursor-pointer"
-              onClick={() => useAuthStore.getState().logout()}
-            >
+            <button className="text-red-800 cursor-pointer" onClick={logout}>
               Logout
             </button>
           </div>
